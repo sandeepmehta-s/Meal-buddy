@@ -1,0 +1,23 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Meal Mate{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'delivery/app.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{% url 'home' %}"><span class="brand-mark">M</span><span>Meal Mate</span></a>
+        {% block nav %}<nav><a href="{% url 'home' %}">Home</a><a href="{% url 'open_signin' %}">Sign in</a><a class="nav-cta" href="{% url 'open_signup' %}">Join free</a></nav>{% endblock %}
+    </header>
+    {% if messages %}<div class="flash-stack">{% for message in messages %}<div class="flash flash-{{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="site-footer"><span>Meal Mate</span><span>Good food, thoughtfully delivered.</span></footer>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
